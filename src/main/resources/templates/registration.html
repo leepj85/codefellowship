@@ -6,10 +6,23 @@
 </head>
 <body>
 <form method="POST" action="/users">
-    <label for="fullname">Full name: </label><input name="fullname" id="fullname" />
-    <label for="username"> Username: </label><input name="username" id="username" />
+    <label for="firstname">First Name: </label><input name="firstname" id="firstname" />
+    <label for="lastname">Last Name: </label><input name="lastname" id="lastname" />
+    <label for="dateofbirth">Date of Birth: </label><input type="date" name="dateofbirth" id="dateofbirth" />
+    <label for="bio">Bio: </label><input name="bio" id="bio" />
+
+    <label for="username">Username: </label><input name="username" id="username" />
     <label for="password">Password:</label><input type="password" name="password" id="password" />
     <input type="submit" />
 </form>
 </body>
 </html>
+
+<!--<div>-->
+<!--    <form method="POST" action="/movies">-->
+<!--        Title:<input name="title" />-->
+<!--        Director:<input name="director" />-->
+<!--        Release date:<input type="date" name="releaseDate" />-->
+<!--        <input type="submit" />-->
+<!--    </form>-->
+<!--</div>-->
