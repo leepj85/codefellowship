@@ -3,7 +3,7 @@
 This repo holds the CodeFellowship lab appliation.
 
 ## Lab 16: CodeFellowship Profiles
-### List of Files
+### List of New Files
 * config
   * UserDetailsServiceImpl.java
   * WebSecurityConfig.java
@@ -18,6 +18,18 @@ This repo holds the CodeFellowship lab appliation.
   * myprofile.html
   * registration.html
   * root.html
+
+## Lab 17: CodeFellowship Profiles
+### List of New Files
+* controllers
+  * PostContoller.java
+* models
+  * Post.java
+  * PostRepository.java
+* templates
+  * fragments - nav.html
+  * post.html
+  
 
 
 
