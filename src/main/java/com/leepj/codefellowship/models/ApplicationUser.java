@@ -3,12 +3,10 @@ package com.leepj.codefellowship.models;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -16,12 +14,16 @@ public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String picURL;
     String firstName;
     String lastName;
     Date dob;
     String bio;
     String username;
     String password;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    List<Post> posts;
 
     public ApplicationUser(String firstName, String lastName, Date dob, String bio, String username, String password) {
         this.firstName = firstName;
@@ -32,15 +34,37 @@ public class ApplicationUser implements UserDetails {
         this.password = password;
     }
 
+    public ApplicationUser(String picURL, String firstName, String lastName, Date dob, String bio, String username, String password) {
+        this.picURL = picURL;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.bio = bio;
+        this.username = username;
+        this.password = password;
+    }
+
     public ApplicationUser() {}
+
+    public List<Post> getPosts() {
+        return this.posts;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 
+    public String getPicURL() {
+        return this.picURL;
+    }
+
+    public void setPicURL(String picURL) {
+        this.picURL = picURL;
+    }
+
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -48,7 +72,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -56,7 +80,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -64,7 +88,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     public Date getDob() {
-        return dob;
+        return this.dob;
     }
 
     public void setDob(Date dob) {
@@ -72,7 +96,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     public String getBio() {
-        return bio;
+        return this.bio;
     }
 
     public void setBio(String bio) {
