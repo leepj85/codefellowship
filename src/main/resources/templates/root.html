@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>root</title>
 </head>
 <body>
-<h1>CodeFellowship!</h1>
-<div th:if="${user}">
-    Hello, <span th:text="${user.name}"></span>!
-    <a href="logout">Log out</a>
-</div>
-<div th:unless="${user}">
-    <a href="/login">Log in</a>
-    <a href="/signup">Sign up</a>
-</div>
+<div th:replace="fragments/nav :: nav"></div>
 </body>
 </html>

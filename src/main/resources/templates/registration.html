@@ -5,7 +5,9 @@
     <title>Sign Up</title>
 </head>
 <body>
+<div th:replace="fragments/nav :: nav"></div>
 <form method="POST" action="/users">
+<!--    <label for="picurl">Profile Pic URL: </label><input name="picurl" id="picurl" />-->
     <label for="firstname">First Name: </label><input name="firstname" id="firstname" />
     <label for="lastname">Last Name: </label><input name="lastname" id="lastname" />
     <label for="dateofbirth">Date of Birth: </label><input type="date" name="dateofbirth" id="dateofbirth" />

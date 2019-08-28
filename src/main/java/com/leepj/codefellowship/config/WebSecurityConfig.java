@@ -5,6 +5,8 @@ package com.leepj.codefellowship.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -35,11 +37,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/*").permitAll()
+                    .antMatchers("/", "/login", "/registration", "/error").permitAll()
+                    .antMatchers(HttpMethod.POST, "/users").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/myprofile", true);
+                .defaultSuccessUrl("/myprofile", true)
+                .and()
+                .logout();
 
+
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
 

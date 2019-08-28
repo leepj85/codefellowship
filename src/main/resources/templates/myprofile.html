@@ -3,13 +3,18 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>My Profile</title>
+    <title>Profile</title>
 </head>
 <body>
-<h1><span th:text="${user.username}"></span>'s Profile</h1>
-<h2>First Name: <span th:text="${user.firstName}"></span></h2>
-<h2>Last Name: <span th:text="${user.lastName}"></span></h2>
-<h2>Date of Birth: <span th:text="${user.dob}"></span></h2>
-<h2>Bio</h2><span th:text="${user.bio}"></span>
+<div th:replace="fragments/nav :: nav"></div>
+<h1><span th:text="${userSQL.username}"></span>'s Profile</h1>
+<img src="/34AD2.jpg">
+<h2>First Name: <span th:text="${userSQL.firstName}"></span></h2>
+<h2>Last Name: <span th:text="${userSQL.lastName}"></span></h2>
+<h2>Date of Birth: <span th:text="${userSQL.dob}"></span></h2>
+<h2>Bio: <span th:text="${userSQL.bio}"></span></h2>
+<ul>
+    <li th:each="post : ${userSQL.posts}" th:text="${post}"></li>
+</ul>
 </body>
 </html>
