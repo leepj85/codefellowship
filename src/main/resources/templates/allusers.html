@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+    <header>
+        <h1>All CodeFellowship Users</h1>
+    </header>
+    <div th:replace="fragments/nav :: nav"></div>
+    <ul>
+        <li th:each="user : ${allUsers}">
+            <span>User name: <a th:href="${'/users/' + user.id}"><p th:text="${user.username}"></p></a></span>
+        </li>
+    </ul>
+</body>
+</html>
+
+<!--/users/{id}-->
+<!--<a href="/logout">Log out</a>-->

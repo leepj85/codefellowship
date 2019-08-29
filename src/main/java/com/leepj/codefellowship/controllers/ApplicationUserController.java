@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -46,17 +47,30 @@ public class ApplicationUserController {
     @GetMapping("/myprofile")
     public String getMyProfile(Principal p, Model m){
         ApplicationUser userSQL = (ApplicationUser) applicationUserRepository.findByUsername(p.getName());
+        ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("userSQL", userSQL);
-        m.addAttribute("user", p);
+        m.addAttribute("user", currentUser);
         return "myprofile";
     }
 
     @GetMapping("/users/{id}")
     public String showOneUser(@PathVariable long id, Model m, Principal p) {
         ApplicationUser userSQL = applicationUserRepository.findById(id).get();
+        ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("userSQL", userSQL);
-        m.addAttribute("user", p);
+        m.addAttribute("user", currentUser);
         return "myprofile";
+    }
+
+    @GetMapping("/allusers")
+    public String showAllUsers(Principal p, Model m) {
+        ApplicationUser userSQL = applicationUserRepository.findByUsername(p.getName());
+        ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("userSQL", userSQL);
+        m.addAttribute("user", currentUser);
+        List<ApplicationUser> allUsers = applicationUserRepository.findAll();
+        m.addAttribute("allUsers", allUsers);
+        return "allusers";
     }
 }
 

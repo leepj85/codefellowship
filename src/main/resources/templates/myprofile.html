@@ -8,7 +8,14 @@
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 <h1><span th:text="${userSQL.username}"></span>'s Profile</h1>
-<img src="/34AD2.jpg">
+<span th:if="${userSQL.id != user.id}">
+<form method="POST" action="/feed">
+    <input type="hidden" th:value="${user.id}" name="follower" />
+    <input type="hidden" th:value="${userSQL.id }" name="followee" />
+    <input type="submit" th:value="${'Follow ' + userSQL.firstName}" />
+</form>
+</span>
+<p><img src="/34AD2.jpg"></p>
 <h2>First Name: <span th:text="${userSQL.firstName}"></span></h2>
 <h2>Last Name: <span th:text="${userSQL.lastName}"></span></h2>
 <h2>Date of Birth: <span th:text="${userSQL.dob}"></span></h2>

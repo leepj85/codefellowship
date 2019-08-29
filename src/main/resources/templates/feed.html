@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>My Feed</title>
+</head>
+<body>
+<nav th:replace="fragments/nav :: nav" class="nav"></nav>
+<div>
+<h1>Feed</h1>
+<div th:each="post: ${myFeed}" >
+    <p><span th:text="${post.createdAt}"></span> by <span th:text="${post.owner}"></span></p>
+    <p th:text="${post.body}"></p>
+</div>
+
+</div>
+</body>
+</html>
+
