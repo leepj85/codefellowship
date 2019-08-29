@@ -19,7 +19,7 @@ This repo holds the CodeFellowship lab appliation.
   * registration.html
   * root.html
 
-## Lab 17: CodeFellowship Profiles
+## Lab 17: Spring Authorization
 ### List of New Files
 * controllers
   * PostContoller.java
