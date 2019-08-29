@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -24,6 +25,18 @@ public class ApplicationUser implements UserDetails {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
     List<Post> posts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "followers",
+            joinColumns = { @JoinColumn(name="follower") },
+            inverseJoinColumns = { @JoinColumn(name="followee")}
+    )
+
+    Set<ApplicationUser> following;
+
+    @ManyToMany(mappedBy = "following")
+    Set<ApplicationUser> followedBy;
 
     public ApplicationUser(String firstName, String lastName, Date dob, String bio, String username, String password) {
         this.firstName = firstName;
@@ -46,13 +59,29 @@ public class ApplicationUser implements UserDetails {
 
     public ApplicationUser() {}
 
+
+    public void addFollow(ApplicationUser followee){
+        following.add(followee);
+    }
+
+    public Set<ApplicationUser> getFollowedBy() {
+        return followedBy;
+    }
+
+    public void setFollowedBy(Set<ApplicationUser> followedBy) {
+        this.followedBy = followedBy;
+    }
+
     public List<Post> getPosts() {
         return this.posts;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<ApplicationUser> following) {
+        this.following = following;
     }
 
     public String getPicURL() {
@@ -109,6 +138,11 @@ public class ApplicationUser implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     @Override
