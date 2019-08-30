@@ -9,7 +9,7 @@
 <div>
 <h1>Feed</h1>
 <div th:each="post: ${myFeed}" >
-    <p><span th:text="${post.createdAt}"></span> by <span th:text="${post.owner}"></span></p>
+    <p><span th:text="${post.createdAt}"></span> by <span th:text="${post.owner.getUsername()}"></span></p>
     <p th:text="${post.body}"></p>
 </div>
 

@@ -28,6 +28,13 @@ public class Post {
 
     public Post() {}
 
+    public ApplicationUser getOwner() {
+        return owner;
+    }
+
+    public void setOwner(ApplicationUser owner) {
+        this.owner = owner;
+    }
 
     public long getId() {
         return id;
@@ -45,7 +52,7 @@ public class Post {
         this.body = body;
     }
 
-    public Date getCreateAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
