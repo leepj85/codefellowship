@@ -1,6 +1,6 @@
 # codefellowship
 
-This repo holds the CodeFellowship lab appliation.
+This repo holds the CodeFellowship lab application.
 
 ## Lab 16: CodeFellowship Profiles
 ### List of New Files
